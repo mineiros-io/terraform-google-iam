@@ -52,3 +52,4 @@ crash.log
 
 .terraform.lock.hcl
 .tool-versions
+.tf_plugin_cache_dir
