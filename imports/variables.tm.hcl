@@ -14,7 +14,7 @@ generate_hcl "variables.tf" {
       default     = []
 
       validation {
-        condition     = alltrue([for m in var.members : can(regex("^(${global.validation}|computed):)", m))])                                            #TODO: make it nicer with tm_()s
+        condition     = tm_hcl_expression("alltrue([for m in var.members : can(regex(\"^(${global.validation}|computed):)\", m))])")                     #TODO: make it nicer with tm_()s
         error_message = "The value must be a non-empty list of strings where each entry is a valid principal type identified with ${global.validation}." #TODO: make it nicer with tm_()s
       }
     }
@@ -25,7 +25,7 @@ generate_hcl "variables.tf" {
       default     = {}
 
       validation {
-        condition     = alltrue([for k, v in var.computed_members_map : can(regex("^(${global.validation}):)", v))])
+        condition     = tm_hcl_expression("alltrue([for k, v in var.computed_members_map : can(regex(\"^(${global.validation}):)\", v))])")
         error_message = "The value must be a non-empty string being a valid principal type identified with ${global.validation}."
       }
     }
