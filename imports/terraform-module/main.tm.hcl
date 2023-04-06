@@ -3,7 +3,7 @@ generate_hcl "main.tf" {
     tm_dynamic "resource" {
       labels = ["${terramate.stack.path.basename}_binding", "binding"]
       attributes = {
-        global.identifier.id = tm_hcl_expression("var.${global.identifier.id}")
+        global.resource_parent.identifier = tm_hcl_expression("var.${global.resource_parent.identifier}")
       }
       #condition = TODO: check if count can be replaced on this level
 
@@ -20,7 +20,7 @@ generate_hcl "main.tf" {
     tm_dynamic "resource" {
       labels = ["${terramate.stack.path.basename}_member", "member"]
       attributes = {
-        global.identifier.id = tm_hcl_expression("var.${global.identifier.id}")
+        global.resource_parent.identifier = tm_hcl_expression("var.${global.resource_parent.identifier}")
       }
 
       content {
@@ -36,7 +36,7 @@ generate_hcl "main.tf" {
     tm_dynamic "resource" {
       labels = ["${terramate.stack.path.basename}_policy", "policy"]
       attributes = {
-        global.identifier.id = tm_hcl_expression("var.${global.identifier.id}")
+        global.resource_parent.identifier = tm_hcl_expression("var.${global.resource_parent.identifier}")
       }
 
       content {
