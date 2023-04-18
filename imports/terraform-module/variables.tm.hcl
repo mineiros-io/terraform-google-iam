@@ -1,7 +1,7 @@
 generate_hcl "variables.tf" {
   content {
     tm_dynamic "variable" {
-      labels = [global.resource_parent.identifier]
+      labels = [global.resource_parent.variable]
       content {
         description = "(Required) ${global.resource_parent.description}"
         type        = string
@@ -10,12 +10,12 @@ generate_hcl "variables.tf" {
 
     variable "members" {
       type        = set(string)
-      description = "(Optional) Identities that will be granted the privilege in role. Each entry can have one of the following values: ${tm_join(", ", [for i in tm_split(",", tm_replace(tm_replace(global.validation_member_regex, "/\\(|\\)/", ""), "|", ",")) : tm_can(tm_regex("all", i)) ? "`${i}`" : "`${i}:{identifier_id}`"])} or `computed:{identifier_id}`." #TODO: make more detailed (emailid,domain,whatever)
+      description = "(Optional) Identities that will be granted the privilege in role." #Each entry can have one of the following values: ${tm_join(", ", [for i in tm_split(",", tm_replace(tm_replace(global.validation_member_regex, "/\\(|\\)/", ""), "|", ",")) : tm_can(tm_regex("all", i)) ? "`${i}`" : "`${i}:{variable_id}`"])} or `computed:{variable_id}`." #TODO: make more detailed (emailid,domain,whatever)
       default     = []
 
       validation {
-        condition     = tm_hcl_expression("alltrue([for m in var.members : can(regex(\"^(${global.validation_member_regex}|computed):)\", m))])")
-        error_message = "The value must be a non-empty list of strings where each entry is a valid principal type identified with${tm_join(", ", [for i in tm_split(",", tm_replace(tm_replace(global.validation_member_regex, "/\\(|\\)/", ""), "|", ",")) : tm_can(tm_regex("all", i)) ? "`${i}`" : "`${i}:`"])} or `computed:`."
+        condition     = tm_hcl_expression("alltrue([for m in var.members : can(regex(\"^(${tm_trimsuffix(global.validation_member_regex, ")")}|computed):)\", m))])")
+        error_message = "The value must be a non-empty list of strings where each entry is a valid principal type identified with ${tm_join(", ", [for i in tm_split(",", tm_replace(tm_replace(global.validation_member_regex, "/\\(|\\)/", ""), "|", ",")) : tm_can(tm_regex("all", i)) ? "`${i}`" : "`${i}:`"])} or `computed:`."
       }
     }
 
@@ -25,13 +25,13 @@ generate_hcl "variables.tf" {
       default     = {}
 
       validation {
-        condition     = tm_hcl_expression("alltrue([for k, v in var.computed_members_map : can(regex(\"^(${global.validation_member_regex}):)\", v))])")
+        condition     = tm_hcl_expression("alltrue([for k, v in var.computed_members_map : can(regex(\"^(${global.validation_member_regex}:)\", v))])")
         error_message = "The value must be a non-empty string being a valid principal type identified with ${tm_join(", ", [for i in tm_split(",", tm_replace(tm_replace(global.validation_member_regex, "/\\(|\\)/", ""), "|", ",")) : tm_can(tm_regex("all", i)) ? "`${i}`" : "`${i}:`"])}."
       }
     }
 
     variable "role" {
-      description = "(Optional) The role that should be applied to the binding. Note that custom roles must be of the format '[projects|organizations]/{parent-name}/roles/{role-name}'."
+      description = "(Optional) The IAM role to add the members to. Note that custom roles must be of the format '[projects|organizations]/{parent-name}/roles/{role-name}'."
       type        = string
       default     = null
     }

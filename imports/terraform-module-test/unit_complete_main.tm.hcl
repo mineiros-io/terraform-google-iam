@@ -21,7 +21,7 @@ generate_hcl "tests/unit-complete/_terramate_generated_main.tf" {
     tm_dynamic "module" {
       labels = ["test0"]
       attributes = {
-        global.resource_parent.identifier = "${global.resource_parent.identifier}-complete0"
+        global.resource_parent.variable = "${global.resource_parent.variable}-complete0"
       }
 
       content {
@@ -53,7 +53,7 @@ generate_hcl "tests/unit-complete/_terramate_generated_main.tf" {
     tm_dynamic "module" {
       labels = ["test1"]
       attributes = {
-        global.resource_parent.identifier = "${global.resource_parent.identifier}-complete1"
+        global.resource_parent.variable = "${global.resource_parent.variable}-complete1"
       }
 
       content {
@@ -81,7 +81,7 @@ generate_hcl "tests/unit-complete/_terramate_generated_main.tf" {
     tm_dynamic "module" {
       labels = ["test2"]
       attributes = {
-        global.resource_parent.identifier = "${global.resource_parent.identifier}-complete2"
+        global.resource_parent.variable = "${global.resource_parent.variable}-complete2"
       }
 
       content {
@@ -117,7 +117,7 @@ generate_hcl "tests/unit-complete/_terramate_generated_main.tf" {
     tm_dynamic "module" {
       labels = ["test3"]
       attributes = {
-        global.resource_parent.identifier = "${global.resource_parent.identifier}-complete3"
+        global.resource_parent.variable = "${global.resource_parent.variable}-complete3"
       }
 
       content {

@@ -15,7 +15,7 @@ generate_hcl "tests/unit-disabled/_terramate_generated_main.tf" {
     tm_dynamic "module" {
       labels = ["test0"]
       attributes = {
-        global.resource_parent.identifier = "${global.resource_parent.identifier}-disabled0"
+        global.resource_parent.variable = "${global.resource_parent.variable}-disabled0"
       }
 
       content {
@@ -38,7 +38,7 @@ generate_hcl "tests/unit-disabled/_terramate_generated_main.tf" {
     tm_dynamic "module" {
       labels = ["test1"]
       attributes = {
-        global.resource_parent.identifier = "${global.resource_parent.identifier}-disabled1"
+        global.resource_parent.variable = "${global.resource_parent.variable}-disabled1"
       }
 
       content {
@@ -62,7 +62,7 @@ generate_hcl "tests/unit-disabled/_terramate_generated_main.tf" {
     tm_dynamic "module" {
       labels = ["test2"]
       attributes = {
-        global.resource_parent.identifier = "${global.resource_parent.identifier}-disabled2"
+        global.resource_parent.variable = "${global.resource_parent.variable}-disabled2"
       }
 
       content {

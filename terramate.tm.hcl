@@ -11,6 +11,15 @@ terramate {
   }
 }
 
+globals {
+  minimum_terraform_version = "1.0"
+  minimum_provider_version  = "4.0"
+
+  provider_version_constraint  = "~> ${global.minimum_provider_version}"
+  terraform_version_constraint = "~> ${global.minimum_terraform_version}, != 1.1.0, != 1.1.1"
+  # we exclude 1.1.0 and 1.1.1 because of:
+  # https://github.com/hashicorp/terraform/blob/v1.1/CHANGELOG.md#112-december-17-2021
+}
 
 # terraform module files
 import {
@@ -45,14 +54,4 @@ import {
 
 import {
   source = "imports/terraform-module-test/unit_disabled_main.tm.hcl"
-}
-
-globals {
-  minimum_terraform_version = "1.0"
-  minimum_provider_version  = "4.0"
-
-  provider_version_constraint  = "~> ${global.minimum_provider_version}"
-  terraform_version_constraint = "~> ${global.minimum_terraform_version}, != 1.1.0, != 1.1.1"
-  # we exclude 1.1.0 and 1.1.1 because of:
-  # https://github.com/hashicorp/terraform/blob/v1.1/CHANGELOG.md#112-december-17-2021
 }
