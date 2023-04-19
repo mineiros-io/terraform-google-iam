@@ -18,6 +18,7 @@ module "test0" {
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
   }
+  location = "europe-west3"
   members = [
     "user:member@example.com",
     "computed:myserviceaccount",
@@ -31,6 +32,7 @@ module "test1" {
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
   }
+  location = "europe-west3"
   members = [
     "user:member@example.com",
     "computed:myserviceaccount",
@@ -43,6 +45,7 @@ module "test2" {
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
   }
+  location = "europe-west3"
   policy_bindings = [
     {
       role = "roles/viewer"
@@ -65,6 +68,7 @@ module "test3" {
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
   }
+  location = "europe-west3"
   policy_bindings = [
     {
       role = "roles/viewer"

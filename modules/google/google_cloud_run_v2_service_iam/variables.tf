@@ -4,6 +4,10 @@ variable "name" {
   description = "(Required) Name of Cloud Run V2 service used to find the parent resource to bind the IAM policy to"
   type        = string
 }
+variable "location" {
+  description = "(Required) The location of the cloud run service Used to find the parent resource to bind the IAM policy to"
+  type        = string
+}
 variable "members" {
   default = [
   ]

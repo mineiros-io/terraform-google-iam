@@ -6,8 +6,9 @@ resource "google_cloud_run_v2_service_iam_binding" "binding" {
   depends_on = [
     var.module_depends_on,
   ]
-  members = [for m in var.members : try(var.computed_members_map[regex("^computed:(.*)", m)[0]], m)]
-  role    = var.role
+  location = var.location
+  members  = [for m in var.members : try(var.computed_members_map[regex("^computed:(.*)", m)[0]], m)]
+  role     = var.role
 }
 resource "google_cloud_run_v2_service_iam_member" "member" {
   name = var.name
@@ -16,8 +17,9 @@ resource "google_cloud_run_v2_service_iam_member" "member" {
   ]
   for_each = var.module_enabled && var.policy_bindings == null && var.authoritative == false ? var.members : [
   ]
-  member = try(var.computed_members_map[regex("^computed:(.*)", each.value)[0]], each.value)
-  role   = var.role
+  location = var.location
+  member   = try(var.computed_members_map[regex("^computed:(.*)", each.value)[0]], each.value)
+  role     = var.role
 }
 resource "google_cloud_run_v2_service_iam_policy" "policy" {
   name  = var.name
@@ -25,6 +27,7 @@ resource "google_cloud_run_v2_service_iam_policy" "policy" {
   depends_on = [
     var.module_depends_on,
   ]
+  location    = var.location
   policy_data = try(data.google_iam_policy.policy[0].policy_data, null)
 }
 data "google_iam_policy" "policy" {

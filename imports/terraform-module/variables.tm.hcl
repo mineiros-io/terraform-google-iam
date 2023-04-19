@@ -8,6 +8,11 @@ generate_hcl "variables.tf" {
       }
     }
 
+    variable "location" {
+      description = "(Required) The location of the cloud run service Used to find the parent resource to bind the IAM policy to"
+      type        = string
+    }
+
     variable "members" {
       type        = set(string)
       description = "(Optional) Identities that will be granted the privilege in role." #Each entry can have one of the following values: ${tm_join(", ", [for i in tm_split(",", tm_replace(tm_replace(global.validation_member_regex, "/\\(|\\)/", ""), "|", ",")) : tm_can(tm_regex("all", i)) ? "`${i}`" : "`${i}:{variable_id}`"])} or `computed:{variable_id}`." #TODO: make more detailed (emailid,domain,whatever)
