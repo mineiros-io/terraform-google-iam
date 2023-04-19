@@ -21,37 +21,6 @@ globals {
   # https://github.com/hashicorp/terraform/blob/v1.1/CHANGELOG.md#112-december-17-2021
 }
 
-# terraform module files
 import {
-  source = "imports/terraform-module/main.tm.hcl"
-}
-
-import {
-  source = "imports/terraform-module/variables.tm.hcl"
-}
-
-import {
-  source = "imports/terraform-module/versions.tm.hcl"
-}
-
-import {
-  source = "imports/terraform-module/outputs.tm.hcl"
-}
-
-import {
-  source = "imports/terraform-module/README.tm.hcl"
-}
-
-#tests
-
-import {
-  source = "imports/terraform-module-test/unit_complete_main.tm.hcl"
-}
-
-import {
-  source = "imports/terraform-module-test/unit_minimal_main.tm.hcl"
-}
-
-import {
-  source = "imports/terraform-module-test/unit_disabled_main.tm.hcl"
+  source = "imports/default.tm.hcl"
 }
