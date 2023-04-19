@@ -31,6 +31,8 @@ generate_hcl "tests/unit-complete/_terramate_generated_main.tf" {
 
         role = "roles/viewer"
 
+        location = "europe-west3"
+
         # add all optional arguments that create additional/extended resources
 
         members = [
@@ -63,6 +65,8 @@ generate_hcl "tests/unit-complete/_terramate_generated_main.tf" {
 
         role = "roles/viewer"
 
+        location = "europe-west3"
+
         # add all optional arguments that create additional/extended resources
 
         authoritative = false
@@ -88,6 +92,8 @@ generate_hcl "tests/unit-complete/_terramate_generated_main.tf" {
         source = "../.."
 
         # add all required arguments
+
+        location = "europe-west3"
 
         policy_bindings = [
           {
@@ -124,6 +130,8 @@ generate_hcl "tests/unit-complete/_terramate_generated_main.tf" {
         source = "../.."
 
         # add all required arguments
+
+        location = "europe-west3"
 
         policy_bindings = [
           {

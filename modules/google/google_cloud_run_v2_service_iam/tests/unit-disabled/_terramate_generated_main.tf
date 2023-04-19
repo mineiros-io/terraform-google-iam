@@ -10,7 +10,8 @@ terraform {
   }
 }
 module "test0" {
-  name = "name-disabled0"
+  name     = "name-disabled0"
+  location = "europe-west3"
   members = [
     "user:member@example.com",
   ]
@@ -21,6 +22,7 @@ module "test0" {
 module "test1" {
   name          = "name-disabled1"
   authoritative = false
+  location      = "europe-west3"
   members = [
     "user:member@example.com",
   ]
@@ -29,7 +31,8 @@ module "test1" {
   source         = "../.."
 }
 module "test2" {
-  name = "name-disabled2"
+  name     = "name-disabled2"
+  location = "europe-west3"
   members = [
     "user:member@example.com",
   ]
