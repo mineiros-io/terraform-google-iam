@@ -23,6 +23,8 @@ generate_hcl "tests/unit-minimal/_terramate_generated_main.tf" {
 
         # add all required arguments
 
+        location = "europe-west3"
+
         role = "roles/viewer"
 
         # add all optional arguments that create additional/extended resources
@@ -43,6 +45,8 @@ generate_hcl "tests/unit-minimal/_terramate_generated_main.tf" {
         source = "../.."
 
         # add all required arguments
+
+        location = "europe-west3"
 
         role = "roles/viewer"
 
@@ -65,6 +69,8 @@ generate_hcl "tests/unit-minimal/_terramate_generated_main.tf" {
         source = "../.."
 
         # add all required arguments
+
+        location = "europe-west3"
 
         role = "roles/viewer"
 

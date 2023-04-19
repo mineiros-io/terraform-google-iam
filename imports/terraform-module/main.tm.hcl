@@ -10,6 +10,8 @@ generate_hcl "main.tf" {
       content {
         count = var.module_enabled && var.policy_bindings == null && var.authoritative ? 1 : 0
 
+        location = var.location
+
         role    = var.role
         members = [for m in var.members : try(var.computed_members_map[regex("^computed:(.*)", m)[0]], m)]
 
@@ -26,6 +28,8 @@ generate_hcl "main.tf" {
       content {
         for_each = var.module_enabled && var.policy_bindings == null && var.authoritative == false ? var.members : []
 
+        location = var.location
+
         role   = var.role
         member = try(var.computed_members_map[regex("^computed:(.*)", each.value)[0]], each.value)
 
@@ -41,6 +45,8 @@ generate_hcl "main.tf" {
 
       content {
         count = var.module_enabled && var.policy_bindings != null ? 1 : 0
+
+        location = var.location
 
         policy_data = try(data.google_iam_policy.policy[0].policy_data, null)
 
