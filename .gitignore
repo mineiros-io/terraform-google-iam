@@ -51,3 +51,4 @@ vendor
 crash.log
 
 .terraform.lock.hcl
+.tf_plugin_cache_dir
