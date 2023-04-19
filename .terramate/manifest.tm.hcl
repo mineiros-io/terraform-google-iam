@@ -3,6 +3,7 @@ vendor {
     default {
       files = [
         "*.tf",
+	"!tests"
       ]
     }
   }
