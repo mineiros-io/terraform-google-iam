@@ -1,11 +1,14 @@
 generate_hcl "main.tf" {
+
+  lets {
+    attributes = { for k, v in global.variables : k => "var.${k}" }
+  }
+
   content {
     tm_dynamic "resource" {
       labels = ["${terramate.stack.path.basename}_binding", "binding"]
-      attributes = {
-        global.resource_parent.variable = tm_hcl_expression("var.${global.resource_parent.variable}")
-      }
-      #condition = TODO: check if count can be replaced on this level
+
+      attributes = let.attributes
 
       content {
         count = var.module_enabled && var.policy_bindings == null && var.authoritative ? 1 : 0
@@ -19,9 +22,8 @@ generate_hcl "main.tf" {
 
     tm_dynamic "resource" {
       labels = ["${terramate.stack.path.basename}_member", "member"]
-      attributes = {
-        global.resource_parent.variable = tm_hcl_expression("var.${global.resource_parent.variable}")
-      }
+
+      attributes = let.attributes
 
       content {
         for_each = var.module_enabled && var.policy_bindings == null && var.authoritative == false ? var.members : []
@@ -35,9 +37,8 @@ generate_hcl "main.tf" {
 
     tm_dynamic "resource" {
       labels = ["${terramate.stack.path.basename}_policy", "policy"]
-      attributes = {
-        global.resource_parent.variable = tm_hcl_expression("var.${global.resource_parent.variable}")
-      }
+
+      attributes = let.attributes
 
       content {
         count = var.module_enabled && var.policy_bindings != null ? 1 : 0

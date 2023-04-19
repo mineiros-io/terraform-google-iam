@@ -1,10 +1,19 @@
 generate_hcl "variables.tf" {
   content {
     tm_dynamic "variable" {
-      labels = [global.resource_parent.variable]
+      for_each = global.variables
+
+      labels = [variable.key]
+
+      attributes = tm_ternary(
+        tm_can(variable.value.default),
+        { default = variable.value.default },
+        {}
+      )
+
       content {
-        description = "(Required) ${global.resource_parent.description}"
-        type        = string
+        description = variable.value.description
+        type        = tm_hcl_expression(variable.value.type)
       }
     }
 

@@ -1,7 +1,7 @@
 // TERRAMATE: GENERATED AUTOMATICALLY DO NOT EDIT
 
 resource "google_cloud_run_v2_service_iam_binding" "binding" {
-  name  = var.name
+  name  = "var.name"
   count = var.module_enabled && var.policy_bindings == null && var.authoritative ? 1 : 0
   depends_on = [
     var.module_depends_on,
@@ -10,7 +10,7 @@ resource "google_cloud_run_v2_service_iam_binding" "binding" {
   role    = var.role
 }
 resource "google_cloud_run_v2_service_iam_member" "member" {
-  name = var.name
+  name = "var.name"
   depends_on = [
     var.module_depends_on,
   ]
@@ -20,7 +20,7 @@ resource "google_cloud_run_v2_service_iam_member" "member" {
   role   = var.role
 }
 resource "google_cloud_run_v2_service_iam_policy" "policy" {
-  name  = var.name
+  name  = "var.name"
   count = var.module_enabled && var.policy_bindings != null ? 1 : 0
   depends_on = [
     var.module_depends_on,
