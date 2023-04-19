@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  static_analysis_tools: terraform terramate tflint python pre-commit
+  static_analysis_tools: terraform terramate tflint pre-commit
   unit_tests_tools: terraform terramate golang
 
 jobs:
