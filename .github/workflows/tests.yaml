@@ -61,9 +61,6 @@ jobs:
       - name: Install selected tools via asdf
         run: for i in $unit_tests_tools ; do asdf install $i ; done
 
-      - name: Ensure test assets are up to date
-        run: make test/update-assets
-
       - name: Run Unit Tests
         run: make test/unit-tests
         env:

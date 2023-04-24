@@ -50,7 +50,7 @@ test/pre-commit/all:
 test/unit-tests: TEST ?= "TestUnit"
 test/unit-tests:
 	@echo "${YELLOW}[TEST] ${GREEN}Start Running unit tests.${RESET}"
-	$(call quiet-command,terramate run --changed -- sh -c "cd tests ; go test -v -count 1 -timeout 45m -parallel 128 -run $(TEST)")
+	$(call quiet-command,terramate run --changed -- sh -c "cd \$${TM_STACK_TO_ROOT}/tests ; go test -v -count 1 -timeout 45m -parallel 128 -run $(TEST)")
 
 ## Run all unit tests.
 .PHONY: test/unit-tests/all

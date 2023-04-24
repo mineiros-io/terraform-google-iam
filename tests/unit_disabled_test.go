@@ -1,6 +1,8 @@
 package test
 
 import (
+	"fmt"
+	"os"
 	"testing"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
@@ -10,8 +12,10 @@ import (
 func TestUnitDisabled(t *testing.T) {
 	t.Parallel()
 
+	test := "unit-disabled"
+
 	terraformOptions := &terraform.Options{
-		TerraformDir: "unit-disabled",
+		TerraformDir: fmt.Sprintf("../%s/tests/%s", os.Getenv("TM_STACK_PATH"), test),
 		Upgrade:      true,
 	}
 
