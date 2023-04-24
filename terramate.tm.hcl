@@ -13,7 +13,7 @@ terramate {
 
 globals {
   minimum_terraform_version = "1.0"
-  minimum_provider_version  = "4.0"
+  minimum_provider_version  = "4.62"
 
   provider_version_constraint  = "~> ${global.minimum_provider_version}"
   terraform_version_constraint = "~> ${global.minimum_terraform_version}, != 1.1.0, != 1.1.1"
