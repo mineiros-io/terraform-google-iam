@@ -1,16 +1,20 @@
 package test
 
 import (
+	"fmt"
+	"os"
 	"testing"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
 )
 
-func TestUnitMinimal(t *testing.T) {
+func TestUnitComplete(t *testing.T) {
 	t.Parallel()
 
+	test := "unit-complete"
+
 	terraformOptions := &terraform.Options{
-		TerraformDir: "unit-minimal",
+		TerraformDir: fmt.Sprintf("../%s/tests/%s", os.Getenv("TM_STACK_PATH"), test),
 		Upgrade:      true,
 	}
 
