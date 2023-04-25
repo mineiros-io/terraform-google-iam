@@ -6,6 +6,8 @@ terramate {
     run {
       env {
         TF_PLUGIN_CACHE_DIR = "${terramate.root.path.fs.absolute}/.tf_plugin_cache_dir"
+        TM_STACK_PATH       = terramate.stack.path.relative
+        TM_STACK_TO_ROOT    = terramate.stack.path.to_root
       }
     }
   }
