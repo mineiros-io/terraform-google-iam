@@ -1,4 +1,4 @@
-generate_hcl "tests/unit-disabled/_terramate_generated_main.tf" {
+generate_hcl "tests/unit-disabled/main.tf" {
   content {
     terraform {
       required_version = global.terraform_version_constraint
