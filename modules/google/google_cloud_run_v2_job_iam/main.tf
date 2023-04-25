@@ -8,6 +8,7 @@ resource "google_cloud_run_v2_job_iam_binding" "binding" {
   ]
   location = var.location
   members  = [for m in var.members : try(var.computed_members_map[regex("^computed:(.*)", m)[0]], m)]
+  provider = google
   role     = var.role
 }
 resource "google_cloud_run_v2_job_iam_member" "member" {
@@ -19,6 +20,7 @@ resource "google_cloud_run_v2_job_iam_member" "member" {
   ]
   location = var.location
   member   = try(var.computed_members_map[regex("^computed:(.*)", each.value)[0]], each.value)
+  provider = google
   role     = var.role
 }
 resource "google_cloud_run_v2_job_iam_policy" "policy" {
@@ -29,9 +31,11 @@ resource "google_cloud_run_v2_job_iam_policy" "policy" {
   ]
   location    = var.location
   policy_data = try(data.google_iam_policy.policy[0].policy_data, null)
+  provider    = google
 }
 data "google_iam_policy" "policy" {
-  count = var.module_enabled && var.policy_bindings != null ? 1 : 0
+  count    = var.module_enabled && var.policy_bindings != null ? 1 : 0
+  provider = google
   dynamic "binding" {
     for_each = var.policy_bindings
     content {
