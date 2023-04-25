@@ -13,8 +13,8 @@ globals {
 
   available_principles = {
     allUsers = {
-      regex       = "^allAuthenticatedUsers$"
-      pattern     = "allAuthenticatedUsers"
+      regex       = "^allUsers$"
+      pattern     = "allUsers"
       description = "A special identifier that represents anyone who is on the internet; with or without a Google account."
     }
     allAuthenticatedUsers = {
@@ -27,7 +27,7 @@ globals {
       pattern     = "user:{emailid}"
       description = "An email address that represents a specific Google account."
       examples = [
-        "user:alice@gmail.com",
+        "user:alice@example.com",
         "user:joe@example.com",
       ]
     }
@@ -51,7 +51,7 @@ globals {
     domain = {
       regex       = "^domain:"
       pattern     = "domain:{domain}"
-      description = "A G Suite domain (primary, instead of alias) name that represents all the users of that domain."
+      description = "A Google Workspace domain (primary, instead of alias) name that represents all the users of that domain."
       examples = [
         "domain:google.com",
         "domain:example.com",
@@ -77,7 +77,7 @@ globals {
       regex       = "^projectViewer:"
       pattern     = "projectViewer:{projectid}"
       description = "Viewers of the given project."
-      examples =[
+      examples = [
         "projectViewer:my-example-project",
       ]
     }

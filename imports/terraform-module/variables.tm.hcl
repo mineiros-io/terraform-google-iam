@@ -9,7 +9,7 @@ generate_hcl "variables.tf" {
     }
 
     variable "location" {
-      description = "(Required) The location of the cloud run service Used to find the parent resource to bind the IAM policy to"
+      description = "(Required) The location used to find the parent resource to bind the IAM policy to"
       type        = string
     }
 
@@ -67,7 +67,7 @@ generate_hcl "variables.tf" {
   }
 
   lets {
-    # We need to generate the used pricipals that this module supports in terms of regex, pattern and co
+    # We need to generate the used principals that this module supports in terms of regex, pattern and co
 
     m_regex = tm_join("|", [
       for p in tm_concat(global.supported_principals, ["computed"]) : global.available_principles[p].regex
