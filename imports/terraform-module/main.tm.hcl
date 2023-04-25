@@ -1,4 +1,8 @@
 generate_hcl "main.tf" {
+  lets {
+    provider = tm_basename(tm_dirname(terramate.stack.path.absolute))
+  }
+
   content {
     tm_dynamic "resource" {
       labels = ["${terramate.stack.path.basename}_binding", "binding"]
@@ -9,6 +13,8 @@ generate_hcl "main.tf" {
 
       content {
         count = var.module_enabled && var.policy_bindings == null && var.authoritative ? 1 : 0
+
+        provider = tm_hcl_expression(let.provider)
 
         location = var.location
 
@@ -28,6 +34,8 @@ generate_hcl "main.tf" {
       content {
         for_each = var.module_enabled && var.policy_bindings == null && var.authoritative == false ? var.members : []
 
+        provider = tm_hcl_expression(let.provider)
+
         location = var.location
 
         role   = var.role
@@ -46,6 +54,8 @@ generate_hcl "main.tf" {
       content {
         count = var.module_enabled && var.policy_bindings != null ? 1 : 0
 
+        provider = tm_hcl_expression(let.provider)
+
         location = var.location
 
         policy_data = try(data.google_iam_policy.policy[0].policy_data, null)
@@ -56,6 +66,8 @@ generate_hcl "main.tf" {
 
     data "google_iam_policy" "policy" {
       count = var.module_enabled && var.policy_bindings != null ? 1 : 0
+
+      provider = tm_hcl_expression(let.provider)
 
       dynamic "binding" {
         for_each = var.policy_bindings
