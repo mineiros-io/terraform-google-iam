@@ -9,18 +9,18 @@ generate_hcl "variables.tf" {
     }
 
     variable "location" {
-      description = "(Required) The location of the cloud run service Used to find the parent resource to bind the IAM policy to"
+      description = "(Required) The location used to find the parent resource to bind the IAM policy to"
       type        = string
     }
 
     variable "members" {
       type        = set(string)
-      description = "(Optional) Identities that will be granted the privilege in role." #Each entry can have one of the following values: ${tm_join(", ", [for i in tm_split(",", tm_replace(tm_replace(global.validation_member_regex, "/\\(|\\)/", ""), "|", ",")) : tm_can(tm_regex("all", i)) ? "`${i}`" : "`${i}:{variable_id}`"])} or `computed:{variable_id}`." #TODO: make more detailed (emailid,domain,whatever)
+      description = "(Optional) Identities that will be granted the privilege in role."
       default     = []
 
       validation {
-        condition     = tm_hcl_expression("alltrue([for m in var.members : can(regex(\"^(${tm_trimsuffix(global.validation_member_regex, ")")}|computed):)\", m))])")
-        error_message = "The value must be a non-empty list of strings where each entry is a valid principal type identified with ${tm_join(", ", [for i in tm_split(",", tm_replace(tm_replace(global.validation_member_regex, "/\\(|\\)/", ""), "|", ",")) : tm_can(tm_regex("all", i)) ? "`${i}`" : "`${i}:`"])} or `computed:`."
+        condition     = tm_hcl_expression(let.m_condition)
+        error_message = let.m_message
       }
     }
 
@@ -30,8 +30,8 @@ generate_hcl "variables.tf" {
       default     = {}
 
       validation {
-        condition     = tm_hcl_expression("alltrue([for k, v in var.computed_members_map : can(regex(\"^(${global.validation_member_regex}:)\", v))])")
-        error_message = "The value must be a non-empty string being a valid principal type identified with ${tm_join(", ", [for i in tm_split(",", tm_replace(tm_replace(global.validation_member_regex, "/\\(|\\)/", ""), "|", ",")) : tm_can(tm_regex("all", i)) ? "`${i}`" : "`${i}:`"])}."
+        condition     = tm_hcl_expression(let.c_condition)
+        error_message = let.c_message
       }
     }
 
@@ -64,5 +64,27 @@ generate_hcl "variables.tf" {
       description = "(Optional) A list of external resources the module depends_on."
       default     = []
     }
+  }
+
+  lets {
+    # We need to generate the used principals that this module supports in terms of regex, pattern and co
+
+    m_regex = tm_join("|", [
+      for p in tm_concat(global.supported_principals, ["computed"]) : global.available_principles[p].regex
+    ])
+    m_patterns = tm_join(", ", [
+      for p in tm_concat(global.supported_principals, ["computed"]) : "`${global.available_principles[p].pattern}`"
+    ])
+    m_message   = "The value must be set of strings where each entry is a valid principal type identified with ${let.m_patterns}"
+    m_condition = "alltrue([for m in var.members : can(regex(\"${let.m_regex}\", m))])"
+
+    c_regex = tm_join("|", [
+      for p in global.supported_principals : global.available_principles[p].regex
+    ])
+    c_patterns = tm_join(", ", [
+      for p in global.supported_principals : "`${global.available_principles[p].pattern}`"
+    ])
+    c_message   = "The value must be set of strings where each entry is a valid principal type identified with ${let.c_patterns}"
+    c_condition = "alltrue([for k, m in var.computed_members_map : can(regex(\"${let.c_regex}\", m))])"
   }
 }

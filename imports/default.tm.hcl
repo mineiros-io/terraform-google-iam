@@ -19,6 +19,10 @@ import {
   source = "terraform-module/README.tm.hcl"
 }
 
+import {
+  source = "terraform-module/principals.tm.hcl"
+}
+
 #tests
 
 import {

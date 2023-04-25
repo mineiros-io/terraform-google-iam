@@ -6,7 +6,7 @@ generate_hcl "tests/unit-minimal/_terramate_generated_main.tf" {
         attributes = {
           tm_basename(tm_dirname(terramate.stack.path.absolute)) = {
             source  = "hashicorp/${tm_basename(tm_dirname(terramate.stack.path.absolute))}"
-            version = global.provider_version_constraint
+            version = global.minimum_provider_version
           }
         }
       }
