@@ -29,6 +29,8 @@ generate_hcl "tests/unit-minimal/main.tf" {
 
         # add all optional arguments that create additional/extended resources
 
+        project = "my-project"
+
         members = ["user:member@example.com"]
 
         # add most/all other optional arguments
@@ -51,6 +53,8 @@ generate_hcl "tests/unit-minimal/main.tf" {
         role = "roles/viewer"
 
         # add all optional arguments that create additional/extended resources
+
+        project = "my-project"
 
         authoritative = false
         members       = ["user:member@example.com"]
@@ -75,6 +79,8 @@ generate_hcl "tests/unit-minimal/main.tf" {
         role = "roles/viewer"
 
         # add all optional arguments that create additional/extended resources
+
+        project = "my-project"
 
         members = ["user:member@example.com"]
 

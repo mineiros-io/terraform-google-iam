@@ -23,6 +23,8 @@ generate_hcl "tests/unit-disabled/main.tf" {
 
         # add all required arguments
 
+        project = "my-project"
+
         location = "europe-west3"
 
         role = "roles/viewer"
@@ -54,6 +56,8 @@ generate_hcl "tests/unit-disabled/main.tf" {
 
         # add all optional arguments that create additional/extended resources
 
+        project = "my-project"
+
         authoritative = false
         members       = ["user:member@example.com"]
 
@@ -79,6 +83,8 @@ generate_hcl "tests/unit-disabled/main.tf" {
         role = "roles/viewer"
 
         # add all optional arguments that create additional/extended resources
+
+        project = "my-project"
 
         members = ["user:member@example.com"]
 

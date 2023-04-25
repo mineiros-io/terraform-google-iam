@@ -16,6 +16,7 @@ module "test0" {
     "user:member@example.com",
   ]
   module_enabled = false
+  project        = "my-project"
   role           = "roles/viewer"
   source         = "../.."
 }
@@ -27,6 +28,7 @@ module "test1" {
     "user:member@example.com",
   ]
   module_enabled = false
+  project        = "my-project"
   role           = "roles/viewer"
   source         = "../.."
 }
@@ -45,6 +47,7 @@ module "test2" {
       ]
     },
   ]
-  role   = "roles/viewer"
-  source = "../.."
+  project = "my-project"
+  role    = "roles/viewer"
+  source  = "../.."
 }

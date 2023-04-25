@@ -15,6 +15,8 @@ generate_hcl "tests/unit-complete/main.tf" {
     module "test-sa" {
       source = "github.com/mineiros-io/terraform-google-service-account?ref=v0.1.1"
 
+      project = "my-project"
+
       account_id = "service-account-id-complete"
     }
 
@@ -34,6 +36,8 @@ generate_hcl "tests/unit-complete/main.tf" {
         location = "europe-west3"
 
         # add all optional arguments that create additional/extended resources
+
+        project = "my-project"
 
         members = [
           "user:member@example.com",
@@ -68,6 +72,8 @@ generate_hcl "tests/unit-complete/main.tf" {
         location = "europe-west3"
 
         # add all optional arguments that create additional/extended resources
+
+        project = "my-project"
 
         authoritative = false
         members = [
@@ -111,10 +117,13 @@ generate_hcl "tests/unit-complete/main.tf" {
           }
         ]
 
+        # add all optional arguments that create additional/extended resources
+
         computed_members_map = {
           myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
         }
-        # add all optional arguments that create additional/extended resources
+
+        project = "my-project"
 
         # add most/all other optional arguments
       }
@@ -130,6 +139,8 @@ generate_hcl "tests/unit-complete/main.tf" {
         source = "../.."
 
         # add all required arguments
+
+        project = "my-project"
 
         location = "europe-west3"
 
