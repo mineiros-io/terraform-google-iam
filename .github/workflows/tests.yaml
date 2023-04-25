@@ -10,10 +10,6 @@ concurrency:
   group: terraform-google-iam
   cancel-in-progress: false
 
-env:
-  static_analysis_tools: terraform terramate tflint pre-commit
-  unit_tests_tools: terraform terramate golang
-
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
@@ -30,8 +26,8 @@ jobs:
         # asdf-vm/actions/plugins-add@v2.1.0 = 83133f03f5693901c2296a8e622955087dc20267
         uses: asdf-vm/actions/plugins-add@83133f03f5693901c2296a8e622955087dc20267
 
-      - name: Install selected tools via asdf
-        run: for i in $static_analysis_tools ; do asdf install $i ; done
+      - name: Install tools via asdf
+        run: asdf install
 
       # - name: Set up Terradoc
       #   # for security reasons we pin commit ids and not tags.
@@ -58,11 +54,8 @@ jobs:
         # asdf-vm/actions/plugins-add@v2.1.0 = 83133f03f5693901c2296a8e622955087dc20267
         uses: asdf-vm/actions/plugins-add@83133f03f5693901c2296a8e622955087dc20267
 
-      - name: Install selected tools via asdf
-        run: for i in $unit_tests_tools ; do asdf install $i ; done
-
-      - name: Ensure test assets are up to date
-        run: make test/update-assets
+      - name: Install tools via asdf
+        run: asdf install
 
       - name: Run Unit Tests
         run: make test/unit-tests
