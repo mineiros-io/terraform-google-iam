@@ -16,6 +16,8 @@ generate_hcl "main.tf" {
 
         provider = tm_hcl_expression(let.provider)
 
+        project = var.project
+
         location = var.location
 
         role    = var.role
@@ -36,6 +38,8 @@ generate_hcl "main.tf" {
 
         provider = tm_hcl_expression(let.provider)
 
+        project = var.project
+
         location = var.location
 
         role   = var.role
@@ -55,6 +59,8 @@ generate_hcl "main.tf" {
         count = var.module_enabled && var.policy_bindings != null ? 1 : 0
 
         provider = tm_hcl_expression(let.provider)
+
+        project = var.project
 
         location = var.location
 

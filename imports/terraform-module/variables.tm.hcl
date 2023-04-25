@@ -13,6 +13,12 @@ generate_hcl "variables.tf" {
       type        = string
     }
 
+    variable "project" {
+      type        = string
+      description = "The ID of the project in which the resource belongs. If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used."
+      default     = null
+    }
+
     variable "members" {
       type        = set(string)
       description = "(Optional) Identities that will be granted the privilege in role."

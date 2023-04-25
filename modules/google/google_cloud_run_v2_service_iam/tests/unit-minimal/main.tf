@@ -15,8 +15,9 @@ module "test0" {
   members = [
     "user:member@example.com",
   ]
-  role   = "roles/viewer"
-  source = "../.."
+  project = "my-project"
+  role    = "roles/viewer"
+  source  = "../.."
 }
 module "test1" {
   name          = "name-minimal1"
@@ -25,8 +26,9 @@ module "test1" {
   members = [
     "user:member@example.com",
   ]
-  role   = "roles/viewer"
-  source = "../.."
+  project = "my-project"
+  role    = "roles/viewer"
+  source  = "../.."
 }
 module "test2" {
   name     = "name-minimal2"
@@ -42,6 +44,7 @@ module "test2" {
       ]
     },
   ]
-  role   = "roles/viewer"
-  source = "../.."
+  project = "my-project"
+  role    = "roles/viewer"
+  source  = "../.."
 }
