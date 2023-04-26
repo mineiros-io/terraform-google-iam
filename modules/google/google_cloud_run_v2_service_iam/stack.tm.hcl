@@ -6,7 +6,14 @@ stack {
 
 globals {
   resource_parent = {
-    variable    = "name"
-    description = "Name of Cloud Run V2 Service resource the IAM is applied to"
+    variable      = "name"
+    resource_name = "google_cloud_run_v2_service"
+    description   = "Name of Cloud Run V2 Service resource the IAM is applied to"
+  }
+  documentation = {
+    service_name      = "Google Cloud Run V2 Service"
+    google_docs_url   = "https://cloud.google.com/run/docs/reference/iam/roles"
+    provider_docs_url = "https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_run_v2_service_iam"
+    example_role      = "run.admin"
   }
 }
