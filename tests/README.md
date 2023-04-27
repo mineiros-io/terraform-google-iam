@@ -98,12 +98,12 @@ Alternatively, you can also run the tests without Docker.
 
 <!-- References -->
 
-[makefile]: https://github.com/mineiros-io/terraform-google-storage-bucket-iam/blob/main/Makefile
-[testdirectory]: https://github.com/mineiros-io/terraform-google-storage-bucket-iam/tree/main/test
-[unit-disabled]: https://github.com/mineiros-io/terraform-google-storage-bucket-iam/blob/main/test/unit-disabled/main.tf
-[unit-minimal]: https://github.com/mineiros-io/terraform-google-storage-bucket-iam/blob/main/test/unit-minimal/main.tf
-[unit-complete]: https://github.com/mineiros-io/terraform-google-storage-bucket-iam/blob/main/test/unit-complete/main.tf
-[homepage]: https://mineiros.io/?ref=terraform-google-storage-bucket-iam
+[makefile]: https://github.com/mineiros-io/terraform-google-iam/blob/main/Makefile
+[testdirectory]: https://github.com/mineiros-io/terraform-google-iam/tree/main/imports/terraform-module-test
+[unit-disabled]: https://github.com/mineiros-io/terraform-google-iam/blob/main/imports/terraform-module-test/unit_disable_main.tf
+[unit-minimal]: https://github.com/mineiros-io/terraform-google-iam/blob/main/imports/terraform-module-test/unit_minimal_main.tf
+[unit-complete]: https://github.com/mineiros-io/terraform-google-iam/blob/main/imports/terraform-module-test/unit_complete_main.tf
+[homepage]: https://mineiros.io/?ref=terraform-google-iam
 [terratest]: https://github.com/gruntwork-io/terratest
 [package testing]: https://golang.org/pkg/testing/
 [docker]: https://docs.docker.com/get-started/
