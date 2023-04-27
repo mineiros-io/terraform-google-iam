@@ -67,7 +67,7 @@ test/update-assets:
 ## Generate README.md with Terradoc
 .PHONY: terradoc
 terradoc:
-	$(call quiet-command,terramate run -- terradoc generate -o README.md README.tfdoc.hcl)
+	$(call quiet-command,terramate run --disable-check-git-uncommitted -- terradoc generate -o README.md README.tfdoc.hcl)
 
 ## Generate shared configuration for tests
 .PHONY: terramate
