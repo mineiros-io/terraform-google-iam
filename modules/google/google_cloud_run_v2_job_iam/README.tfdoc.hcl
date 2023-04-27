@@ -1,7 +1,7 @@
 // TERRAMATE: GENERATED AUTOMATICALLY DO NOT EDIT
 
 header {
-  image = "https://raw.githubusercontent.com/mineiros-io/brand/f2042a229e8feb4b188bea0aec4f6f2ad900c82e/mineiros-primary-logo.svg"
+  image = "https://raw.githubusercontent.com/mineiros-io/brand/851a473f65dd7d857a9311ca255c6e2763c72afe/mineiros-logo.svg"
   url   = "https://mineiros.io/?ref=terraform-google-iam"
   badge "build" {
     image = "https://github.com/mineiros-io/terraform-google-iam/workflows/Tests/badge.svg"
