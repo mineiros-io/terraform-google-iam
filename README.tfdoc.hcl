@@ -29,7 +29,7 @@ header {
 }
 
 section {
-  title = "Generic Google Cloud IAM Terramate Module"
+  title   = "Generic Google Cloud IAM Terramate Module"
   content = <<-EOT
     A [Terramate](https://www.terramate.io) module used to generate [Terraform](https://www.terraform.io) modules for Google Cloud IAM for different services on [Google Cloud Services (GCP)](https://cloud.google.com/).
 
@@ -39,7 +39,7 @@ section {
     EOT
 
   section {
-    title = "Current List of Generated Modules"
+    title   = "Current List of Generated Modules"
     content = <<-EOT
       - [google_cloud_run_v2_job_iam](modules/google/google_cloud_run_v2_job_iam)
       - [google_cloud_run_v2_service_iam](modules/google/google_cloud_run_v2_service_iam)
@@ -47,7 +47,7 @@ section {
   }
 
   section {
-    title = "Usage - How to Generate New IAM Modules"
+    title   = "Usage - How to Generate New IAM Modules"
     content = <<-EOT
       1. Create a new Terramate stack under `modules/{provider}`
       Example: `terramate create --no-generate modules/google/google_storage_bucket_iam`
@@ -77,7 +77,7 @@ section {
       3. Generate code:
         * `terramate fmt`
         * `terramate generate`
-        * `make terradoc`
+        * `pre-commit run -a` (this command may need to be run twice, validate once all output is green)
     EOT
   }
 }

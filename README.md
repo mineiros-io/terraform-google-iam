@@ -49,5 +49,5 @@ globals {
 3. Generate code:
   * `terramate fmt`
   * `terramate generate`
-  * `make terradoc`
+  * `pre-commit run -a` (this command may need to be run twice, validate once all output is green)
 
