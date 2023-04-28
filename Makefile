@@ -57,7 +57,7 @@ test/unit-tests:
 test/unit-tests/all: TEST ?= "TestUnit"
 test/unit-tests/all:
 	@echo "${YELLOW}[TEST] ${GREEN}Start Running unit tests.${RESET}"
-	$(call quiet-command,terramate run -- sh -c "cd tests ; go test -v -count 1 -timeout 45m -parallel 128 -run $(TEST)")
+	$(call quiet-command,terramate run -- sh -c "cd \$${TM_STACK_TO_ROOT}/tests ; go test -v -count 1 -timeout 45m -parallel 128 -run $(TEST)")
 
 ## Update test-assets for each stack
 .PHONY: test/update-assets
