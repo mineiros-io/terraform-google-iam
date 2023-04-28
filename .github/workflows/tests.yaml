@@ -29,15 +29,23 @@ jobs:
       - name: Install tools via asdf
         run: asdf install
 
-      # - name: Set up Terradoc
-      #   # for security reasons we pin commit ids and not tags.
-      #   # mineiros-io/terradoc@main -> af1a7b3ae3635958adf5ee2f40e0c3e70fd0803a
-      #   run: go install github.com/mineiros-io/terradoc/cmd/terradoc@af1a7b3ae3635958adf5ee2f40e0c3e70fd0803a
-      #   env:
-      #     GOPROXY: direct
+      - name: Set up Golang
+        # for security reasons we pin commit ids and not tags.
+        # actions/setup-go@v3.5.0 -> 6edd4406fa81c3da01a34fa6f6343087c207a568
+        uses: actions/setup-go@6edd4406fa81c3da01a34fa6f6343087c207a568
+        with:
+          go-version: 1.18.7
+
+      - name: Set up Terradoc
+        # for security reasons we pin commit ids and not tags.
+        # mineiros-io/terradoc@main -> 018bd4ae81f5dd901cc5a76f34e6acb362b2110e
+        run: |
+          go install github.com/mineiros-io/terradoc/cmd/terradoc@018bd4ae81f5dd901cc5a76f34e6acb362b2110e
+        env:
+          GOPROXY: direct
 
       - name: Run pre-commit
-        run: make test/pre-commit
+        run: make test/pre-commit/all
 
   unit-tests:
     runs-on: ubuntu-latest
