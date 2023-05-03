@@ -75,7 +75,7 @@ generate_hcl "README.tfdoc.hcl" {
 
           ```hcl
           module "${terramate.stack.path.basename}" {
-            source = "github.com/mineiros-io/terraform-google-iam//modules/${let.provider}/${terramate.stack.path.basename}?ref=v0.1.0"
+            source = "github.com/mineiros-io/terraform-google-iam//modules/${let.provider}/${terramate.stack.path.basename}?ref=v0.1.1"
 
             ${global.resource_parent.variable}  = ${global.resource_parent.resource_name}.default.name
             location = ${global.resource_parent.resource_name}.default.location
