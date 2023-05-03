@@ -63,7 +63,6 @@ module "google_dns_managed_zone_iam" {
   source = "github.com/mineiros-io/terraform-google-iam//modules/google/google_dns_managed_zone_iam?ref=v0.1.1"
 
   managed_zone  = google_dns_managed_zone.default.name
-  location = google_dns_managed_zone.default.location
   role     = "roles/dns.admin"
   members  = ["user:admin@example.com"]
 }
@@ -85,14 +84,6 @@ EOT
         variable "managed_zone" {
           description = <<-EOT
 Name of Cloud DNS Managed Zone resource the IAM is applied to.
-EOT
-
-          required = true
-          type     = string
-        }
-        variable "location" {
-          description = <<-EOT
-The location used to find the parent resource to bind the IAM policy to.
 EOT
 
           required = true

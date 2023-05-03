@@ -1,4 +1,10 @@
 generate_hcl "tests/unit-complete/main.tf" {
+  condition = tm_try(global.is_regional, false)
+
+  lets {
+    location = tm_try(global.region_attribute, "location")
+  }
+
   content {
     terraform {
       required_version = global.terraform_version_constraint
@@ -24,6 +30,7 @@ generate_hcl "tests/unit-complete/main.tf" {
       labels = ["test0"]
       attributes = {
         global.resource_parent.variable = "${global.resource_parent.variable}-complete0"
+        let.location                    = "europe-west3"
       }
 
       content {
@@ -32,8 +39,6 @@ generate_hcl "tests/unit-complete/main.tf" {
         # add all required arguments
 
         role = "roles/viewer"
-
-        location = "europe-west3"
 
         # add all optional arguments that create additional/extended resources
 
@@ -60,6 +65,7 @@ generate_hcl "tests/unit-complete/main.tf" {
       labels = ["test1"]
       attributes = {
         global.resource_parent.variable = "${global.resource_parent.variable}-complete1"
+        let.location                    = "europe-west3"
       }
 
       content {
@@ -68,8 +74,6 @@ generate_hcl "tests/unit-complete/main.tf" {
         # add all required arguments
 
         role = "roles/viewer"
-
-        location = "europe-west3"
 
         # add all optional arguments that create additional/extended resources
 
@@ -92,14 +96,13 @@ generate_hcl "tests/unit-complete/main.tf" {
       labels = ["test2"]
       attributes = {
         global.resource_parent.variable = "${global.resource_parent.variable}-complete2"
+        let.location                    = "europe-west3"
       }
 
       content {
         source = "../.."
 
         # add all required arguments
-
-        location = "europe-west3"
 
         policy_bindings = [
           {
@@ -133,6 +136,7 @@ generate_hcl "tests/unit-complete/main.tf" {
       labels = ["test3"]
       attributes = {
         global.resource_parent.variable = "${global.resource_parent.variable}-complete3"
+        let.location                    = "europe-west3"
       }
 
       content {
@@ -141,8 +145,6 @@ generate_hcl "tests/unit-complete/main.tf" {
         # add all required arguments
 
         project = "my-project"
-
-        location = "europe-west3"
 
         policy_bindings = [
           {

@@ -1,4 +1,6 @@
 generate_hcl "main.tf" {
+  condition = tm_try(!global.is_regional, true)
+
   lets {
     provider = tm_basename(tm_dirname(terramate.stack.path.absolute))
   }
@@ -17,8 +19,6 @@ generate_hcl "main.tf" {
         provider = tm_hcl_expression(let.provider)
 
         project = var.project
-
-        location = var.location
 
         role    = var.role
         members = [for m in var.members : try(var.computed_members_map[regex("^computed:(.*)", m)[0]], m)]
@@ -40,8 +40,6 @@ generate_hcl "main.tf" {
 
         project = var.project
 
-        location = var.location
-
         role   = var.role
         member = try(var.computed_members_map[regex("^computed:(.*)", each.value)[0]], each.value)
 
@@ -61,8 +59,6 @@ generate_hcl "main.tf" {
         provider = tm_hcl_expression(let.provider)
 
         project = var.project
-
-        location = var.location
 
         policy_data = try(data.google_iam_policy.policy[0].policy_data, null)
 

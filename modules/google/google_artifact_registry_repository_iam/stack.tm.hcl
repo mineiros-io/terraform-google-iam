@@ -5,6 +5,7 @@ stack {
 }
 
 globals {
+  is_regional = true
   resource_parent = {
     variable      = "repository"
     resource_name = "google_artifact_registry_repository"

@@ -1,4 +1,6 @@
-generate_hcl "tests/unit-minimal/main.tf" {
+generate_hcl "tests/unit-disabled/main.tf" {
+  condition = tm_try(!global.is_regional, true)
+
   content {
     terraform {
       required_version = global.terraform_version_constraint
@@ -6,7 +8,7 @@ generate_hcl "tests/unit-minimal/main.tf" {
         attributes = {
           tm_basename(tm_dirname(terramate.stack.path.absolute)) = {
             source  = "hashicorp/${tm_basename(tm_dirname(terramate.stack.path.absolute))}"
-            version = global.minimum_provider_version
+            version = global.provider_version_constraint
           }
         }
       }
@@ -15,7 +17,7 @@ generate_hcl "tests/unit-minimal/main.tf" {
     tm_dynamic "module" {
       labels = ["test0"]
       attributes = {
-        global.resource_parent.variable = "${global.resource_parent.variable}-minimal0"
+        global.resource_parent.variable = "${global.resource_parent.variable}-disabled0"
       }
 
       content {
@@ -23,32 +25,30 @@ generate_hcl "tests/unit-minimal/main.tf" {
 
         # add all required arguments
 
-        location = "europe-west3"
+        project = "my-project"
 
         role = "roles/viewer"
 
         # add all optional arguments that create additional/extended resources
 
-        project = "my-project"
-
         members = ["user:member@example.com"]
 
         # add most/all other optional arguments
+
+        module_enabled = false
       }
     }
 
     tm_dynamic "module" {
       labels = ["test1"]
       attributes = {
-        global.resource_parent.variable = "${global.resource_parent.variable}-minimal1"
+        global.resource_parent.variable = "${global.resource_parent.variable}-disabled1"
       }
 
       content {
         source = "../.."
 
         # add all required arguments
-
-        location = "europe-west3"
 
         role = "roles/viewer"
 
@@ -60,21 +60,21 @@ generate_hcl "tests/unit-minimal/main.tf" {
         members       = ["user:member@example.com"]
 
         # add most/all other optional arguments
+
+        module_enabled = false
       }
     }
 
     tm_dynamic "module" {
       labels = ["test2"]
       attributes = {
-        global.resource_parent.variable = "${global.resource_parent.variable}-minimal2"
+        global.resource_parent.variable = "${global.resource_parent.variable}-disabled2"
       }
 
       content {
         source = "../.."
 
         # add all required arguments
-
-        location = "europe-west3"
 
         role = "roles/viewer"
 
@@ -92,6 +92,8 @@ generate_hcl "tests/unit-minimal/main.tf" {
             members = ["user:member@example.com"]
           }
         ]
+
+        module_enabled = false
       }
     }
   }

@@ -36,6 +36,8 @@ stack {
 }
 
 globals {
+  is_regional = true
+  region_attribute = "location"
   resource_parent = {
     variable      = "bucket" # Refer to the terraform provider documentation to get this attribute
     resource_name = "google_storage_bucket"

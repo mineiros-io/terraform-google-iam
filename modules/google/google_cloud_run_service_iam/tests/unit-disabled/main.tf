@@ -22,8 +22,8 @@ module "test0" {
 }
 module "test1" {
   service       = "service-disabled1"
-  authoritative = false
   location      = "europe-west3"
+  authoritative = false
   members = [
     "user:member@example.com",
   ]
