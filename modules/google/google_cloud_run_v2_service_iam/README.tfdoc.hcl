@@ -91,12 +91,9 @@ EOT
           type     = string
         }
         variable "location" {
-          description = <<-EOT
-The location used to find the parent resource to bind the IAM policy to.
-EOT
-
-          required = true
-          type     = string
+          description = "The location used to find the parent resource to bind the IAM policy to"
+          required    = true
+          type        = string
         }
         variable "members" {
           default = [

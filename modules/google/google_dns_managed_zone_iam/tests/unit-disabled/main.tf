@@ -11,7 +11,6 @@ terraform {
 }
 module "test0" {
   managed_zone = "managed_zone-disabled0"
-  location     = "europe-west3"
   members = [
     "user:member@example.com",
   ]
@@ -23,7 +22,6 @@ module "test0" {
 module "test1" {
   managed_zone  = "managed_zone-disabled1"
   authoritative = false
-  location      = "europe-west3"
   members = [
     "user:member@example.com",
   ]
@@ -34,7 +32,6 @@ module "test1" {
 }
 module "test2" {
   managed_zone = "managed_zone-disabled2"
-  location     = "europe-west3"
   members = [
     "user:member@example.com",
   ]

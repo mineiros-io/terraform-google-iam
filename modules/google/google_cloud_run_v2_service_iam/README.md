@@ -73,7 +73,7 @@ See [variables.tf] for details.
 
 - [**`location`**](#var-location): *(**Required** `string`)*<a name="var-location"></a>
 
-  The location used to find the parent resource to bind the IAM policy to.
+  The location used to find the parent resource to bind the IAM policy to
 
 - [**`members`**](#var-members): *(Optional `set(string)`)*<a name="var-members"></a>
 

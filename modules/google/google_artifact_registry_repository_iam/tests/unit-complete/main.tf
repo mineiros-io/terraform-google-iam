@@ -16,10 +16,10 @@ module "test-sa" {
 }
 module "test0" {
   repository = "repository-complete0"
+  location   = "europe-west3"
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
   }
-  location = "europe-west3"
   members = [
     "user:member@example.com",
     "computed:myserviceaccount",
@@ -30,11 +30,11 @@ module "test0" {
 }
 module "test1" {
   repository    = "repository-complete1"
+  location      = "europe-west3"
   authoritative = false
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
   }
-  location = "europe-west3"
   members = [
     "user:member@example.com",
     "computed:myserviceaccount",
@@ -45,10 +45,10 @@ module "test1" {
 }
 module "test2" {
   repository = "repository-complete2"
+  location   = "europe-west3"
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
   }
-  location = "europe-west3"
   policy_bindings = [
     {
       role = "roles/viewer"
@@ -69,10 +69,10 @@ module "test2" {
 }
 module "test3" {
   repository = "repository-complete3"
+  location   = "europe-west3"
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
   }
-  location = "europe-west3"
   policy_bindings = [
     {
       role = "roles/viewer"

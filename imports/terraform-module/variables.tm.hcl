@@ -8,9 +8,13 @@ generate_hcl "variables.tf" {
       }
     }
 
-    variable "location" {
-      description = "(Required) The location used to find the parent resource to bind the IAM policy to"
-      type        = string
+    tm_dynamic "variable" {
+      labels    = [tm_try(global.region_attribute, "location")]
+      condition = tm_try(global.is_regional, false)
+      content {
+        description = "(Required) The location used to find the parent resource to bind the IAM policy to"
+        type        = string
+      }
     }
 
     variable "project" {

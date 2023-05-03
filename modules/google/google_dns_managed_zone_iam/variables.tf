@@ -4,10 +4,6 @@ variable "managed_zone" {
   description = "(Required) Name of Cloud DNS Managed Zone resource the IAM is applied to"
   type        = string
 }
-variable "location" {
-  description = "(Required) The location used to find the parent resource to bind the IAM policy to"
-  type        = string
-}
 variable "project" {
   default     = null
   description = "The ID of the project in which the resource belongs. If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used."

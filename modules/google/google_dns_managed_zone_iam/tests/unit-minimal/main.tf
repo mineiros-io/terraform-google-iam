@@ -11,7 +11,6 @@ terraform {
 }
 module "test0" {
   managed_zone = "managed_zone-minimal0"
-  location     = "europe-west3"
   members = [
     "user:member@example.com",
   ]
@@ -22,7 +21,6 @@ module "test0" {
 module "test1" {
   managed_zone  = "managed_zone-minimal1"
   authoritative = false
-  location      = "europe-west3"
   members = [
     "user:member@example.com",
   ]
@@ -32,7 +30,6 @@ module "test1" {
 }
 module "test2" {
   managed_zone = "managed_zone-minimal2"
-  location     = "europe-west3"
   members = [
     "user:member@example.com",
   ]

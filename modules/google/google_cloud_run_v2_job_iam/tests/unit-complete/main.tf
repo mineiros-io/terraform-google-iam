@@ -15,11 +15,11 @@ module "test-sa" {
   source     = "github.com/mineiros-io/terraform-google-service-account?ref=v0.1.1"
 }
 module "test0" {
-  name = "name-complete0"
+  name     = "name-complete0"
+  location = "europe-west3"
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
   }
-  location = "europe-west3"
   members = [
     "user:member@example.com",
     "computed:myserviceaccount",
@@ -30,11 +30,11 @@ module "test0" {
 }
 module "test1" {
   name          = "name-complete1"
+  location      = "europe-west3"
   authoritative = false
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
   }
-  location = "europe-west3"
   members = [
     "user:member@example.com",
     "computed:myserviceaccount",
@@ -44,11 +44,11 @@ module "test1" {
   source  = "../.."
 }
 module "test2" {
-  name = "name-complete2"
+  name     = "name-complete2"
+  location = "europe-west3"
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
   }
-  location = "europe-west3"
   policy_bindings = [
     {
       role = "roles/viewer"
@@ -68,11 +68,11 @@ module "test2" {
   source  = "../.."
 }
 module "test3" {
-  name = "name-complete3"
+  name     = "name-complete3"
+  location = "europe-west3"
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
   }
-  location = "europe-west3"
   policy_bindings = [
     {
       role = "roles/viewer"

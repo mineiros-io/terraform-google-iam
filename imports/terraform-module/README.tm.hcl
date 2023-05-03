@@ -2,6 +2,8 @@ generate_hcl "README.tfdoc.hcl" {
   lets {
     provider = tm_basename(tm_dirname(terramate.stack.path.absolute))
 
+    location = tm_try(global.region_attribute, "location")
+
     members_patterns = tm_join(", ", [
       for p in tm_concat(global.supported_principals, ["computed"]) : "`${global.available_principles[p].pattern}`"
     ])
@@ -68,22 +70,45 @@ generate_hcl "README.tfdoc.hcl" {
         END
       }
 
-      section {
-        title   = "Getting Started"
-        content = <<-END
-          Most common usage of the module:
+      tm_dynamic "section" {
+        condition = tm_try(global.is_regional, false)
+        content {
+          title   = "Getting Started"
+          content = <<-END
+            Most common usage of the module:
 
-          ```hcl
-          module "${terramate.stack.path.basename}" {
-            source = "github.com/mineiros-io/terraform-google-iam//modules/${let.provider}/${terramate.stack.path.basename}?ref=v0.1.1"
+            ```hcl
+            module "${terramate.stack.path.basename}" {
+              source = "github.com/mineiros-io/terraform-google-iam//modules/${let.provider}/${terramate.stack.path.basename}?ref=v0.1.1"
 
-            ${global.resource_parent.variable}  = ${global.resource_parent.resource_name}.default.name
-            location = ${global.resource_parent.resource_name}.default.location
-            role     = "roles/${global.documentation.example_role}"
-            members  = ["user:admin@example.com"]
-          }
-          ```
-        END
+              ${global.resource_parent.variable}  = ${global.resource_parent.resource_name}.default.name
+              ${let.location} = ${global.resource_parent.resource_name}.default.location
+              role     = "roles/${global.documentation.example_role}"
+              members  = ["user:admin@example.com"]
+            }
+            ```
+          END
+        }
+      }
+
+      tm_dynamic "section" {
+        condition = tm_try(!global.is_regional, true)
+        content {
+          title   = "Getting Started"
+          content = <<-END
+            Most common usage of the module:
+
+            ```hcl
+            module "${terramate.stack.path.basename}" {
+              source = "github.com/mineiros-io/terraform-google-iam//modules/${let.provider}/${terramate.stack.path.basename}?ref=v0.1.1"
+
+              ${global.resource_parent.variable}  = ${global.resource_parent.resource_name}.default.name
+              role     = "roles/${global.documentation.example_role}"
+              members  = ["user:admin@example.com"]
+            }
+            ```
+          END
+        }
       }
 
       section {
@@ -109,12 +134,14 @@ generate_hcl "README.tfdoc.hcl" {
               }
             }
 
-            variable "location" {
-              required    = true
-              type        = string
-              description = <<-END
-                The location used to find the parent resource to bind the IAM policy to.
-              END
+            tm_dynamic "variable" {
+              labels    = [tm_try(global.region_attribute, "location")]
+              condition = tm_try(global.is_regional, false)
+              content {
+                required    = true
+                description = "The location used to find the parent resource to bind the IAM policy to"
+                type        = string
+              }
             }
 
             variable "members" {
