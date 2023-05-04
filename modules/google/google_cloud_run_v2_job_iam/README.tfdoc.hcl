@@ -60,7 +60,7 @@ Most common usage of the module:
 
 ```hcl
 module "google_cloud_run_v2_job_iam" {
-  source = "github.com/mineiros-io/terraform-google-iam//modules/google/google_cloud_run_v2_job_iam?ref=v0.1.1"
+  source = "github.com/mineiros-io/terraform-google-iam//modules/google/google_cloud_run_v2_job_iam?ref=v0.1.2"
 
   name  = google_cloud_run_v2_job.default.name
   location = google_cloud_run_v2_job.default.location

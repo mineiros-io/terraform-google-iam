@@ -79,7 +79,7 @@ generate_hcl "README.tfdoc.hcl" {
 
             ```hcl
             module "${terramate.stack.path.basename}" {
-              source = "github.com/mineiros-io/terraform-google-iam//modules/${let.provider}/${terramate.stack.path.basename}?ref=v0.1.1"
+              source = "github.com/mineiros-io/terraform-google-iam//modules/${let.provider}/${terramate.stack.path.basename}?ref=v0.1.2"
 
               ${global.resource_parent.variable}  = ${global.resource_parent.resource_name}.default.name
               ${let.location} = ${global.resource_parent.resource_name}.default.location
@@ -100,7 +100,7 @@ generate_hcl "README.tfdoc.hcl" {
 
             ```hcl
             module "${terramate.stack.path.basename}" {
-              source = "github.com/mineiros-io/terraform-google-iam//modules/${let.provider}/${terramate.stack.path.basename}?ref=v0.1.1"
+              source = "github.com/mineiros-io/terraform-google-iam//modules/${let.provider}/${terramate.stack.path.basename}?ref=v0.1.2"
 
               ${global.resource_parent.variable}  = ${global.resource_parent.resource_name}.default.name
               role     = "roles/${global.documentation.example_role}"

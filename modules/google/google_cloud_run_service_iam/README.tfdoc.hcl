@@ -60,7 +60,7 @@ Most common usage of the module:
 
 ```hcl
 module "google_cloud_run_service_iam" {
-  source = "github.com/mineiros-io/terraform-google-iam//modules/google/google_cloud_run_service_iam?ref=v0.1.1"
+  source = "github.com/mineiros-io/terraform-google-iam//modules/google/google_cloud_run_service_iam?ref=v0.1.2"
 
   service  = google_cloud_run_service.default.name
   location = google_cloud_run_service.default.location
