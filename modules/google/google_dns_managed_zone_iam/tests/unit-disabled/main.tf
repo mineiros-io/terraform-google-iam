@@ -10,8 +10,7 @@ terraform {
   }
 }
 module "test0" {
-  service  = "service-disabled0"
-  location = "europe-west3"
+  managed_zone = "managed_zone-disabled0"
   members = [
     "user:member@example.com",
   ]
@@ -21,8 +20,7 @@ module "test0" {
   source         = "../.."
 }
 module "test1" {
-  service       = "service-disabled1"
-  location      = "europe-west3"
+  managed_zone  = "managed_zone-disabled1"
   authoritative = false
   members = [
     "user:member@example.com",
@@ -33,8 +31,7 @@ module "test1" {
   source         = "../.."
 }
 module "test2" {
-  service  = "service-disabled2"
-  location = "europe-west3"
+  managed_zone = "managed_zone-disabled2"
   members = [
     "user:member@example.com",
   ]

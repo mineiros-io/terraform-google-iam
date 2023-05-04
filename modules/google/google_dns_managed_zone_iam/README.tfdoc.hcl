@@ -31,7 +31,7 @@ header {
 }
 section {
   content = <<-EOT
-A [Terraform](https://www.terraform.io) module to create a [Google Cloud Run V2 Job IAM](https://cloud.google.com/run/docs/reference/iam/roles) on [Google Cloud Services (GCP)](https://cloud.google.com/).
+A [Terraform](https://www.terraform.io) module to create a [Google Cloud DNS Managed Zone IAM](https://cloud.google.com/dns/docs/access-control) on [Google Cloud Services (GCP)](https://cloud.google.com/).
 
 **_This module supports Terraform version 1
 and is compatible with the Terraform Google Provider version 4._**
@@ -41,15 +41,15 @@ that enables our users and customers to easily deploy and manage reusable,
 secure, and production-grade cloud infrastructure.
 EOT
 
-  title = "Google Cloud Run V2 Job IAM Terraform Module"
+  title = "Google Cloud DNS Managed Zone IAM Terraform Module"
   toc   = true
   section {
     content = <<-EOT
 This module implements the following Terraform resources:
 
-- `google_cloud_run_v2_job_iam_binding`
-- `google_cloud_run_v2_job_iam_member`
-- `google_cloud_run_v2_job_iam_policy`
+- `google_dns_managed_zone_iam_binding`
+- `google_dns_managed_zone_iam_member`
+- `google_dns_managed_zone_iam_policy`
 EOT
 
     title = "Module Features"
@@ -59,12 +59,11 @@ EOT
 Most common usage of the module:
 
 ```hcl
-module "google_cloud_run_v2_job_iam" {
-  source = "github.com/mineiros-io/terraform-google-iam//modules/google/google_cloud_run_v2_job_iam?ref=v0.1.1"
+module "google_dns_managed_zone_iam" {
+  source = "github.com/mineiros-io/terraform-google-iam//modules/google/google_dns_managed_zone_iam?ref=v0.1.1"
 
-  name  = google_cloud_run_v2_job.default.name
-  location = google_cloud_run_v2_job.default.location
-  role     = "roles/run.admin"
+  managed_zone  = google_dns_managed_zone.default.name
+  role     = "roles/dns.admin"
   members  = ["user:admin@example.com"]
 }
 ```
@@ -82,18 +81,13 @@ EOT
       title = "Top-level Arguments"
       section {
         title = "Main Resource Configuration"
-        variable "name" {
+        variable "managed_zone" {
           description = <<-EOT
-Name of Cloud Run V2 Job resource the IAM is applied to.
+Name of Cloud DNS Managed Zone resource the IAM is applied to.
 EOT
 
           required = true
           type     = string
-        }
-        variable "location" {
-          description = "The location used to find the parent resource to bind the IAM policy to"
-          required    = true
-          type        = string
         }
         variable "members" {
           default = [
@@ -142,7 +136,7 @@ EOT
 
           readme_example = <<-EOT
 policy_bindings = [{
-  role    = "roles/run.admin"
+  role    = "roles/dns.admin"
   members = ["user:admin@example.com"]
 }]
 EOT
@@ -237,7 +231,7 @@ EOT
     title = "Module Outputs"
     output "iam" {
       description = <<-EOT
-All attributes of the created `google_cloud_run_v2_job_iam_binding` or `google_cloud_run_v2_job_iam_member` or `google_cloud_run_v2_job_iam_policy` resource according to the mode.
+All attributes of the created `google_dns_managed_zone_iam_binding` or `google_dns_managed_zone_iam_member` or `google_dns_managed_zone_iam_policy` resource according to the mode.
 EOT
 
       type = object(iam)
@@ -247,14 +241,14 @@ EOT
     title = "External Documentation"
     section {
       content = <<-EOT
-- https://cloud.google.com/run/docs/reference/iam/roles
+- https://cloud.google.com/dns/docs/access-control
 EOT
 
       title = "Google Documentation"
     }
     section {
       content = <<-EOT
-- https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_run_v2_job_iam
+- https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/dns_managed_zone_iam
 EOT
 
       title = "Terraform Google Provider Documentation:"
@@ -388,7 +382,7 @@ references {
     value = "https://semver.org/"
   }
   ref "variables.tf" {
-    value = "https://github.com/mineiros-io/terraform-google-iam/blob/main/modules/google/google_cloud_run_v2_job_iam/variables.tf"
+    value = "https://github.com/mineiros-io/terraform-google-iam/blob/main/modules/google/google_dns_managed_zone_iam/variables.tf"
   }
   ref "issues" {
     value = "https://github.com/mineiros-io/terraform-google-iam/issues"

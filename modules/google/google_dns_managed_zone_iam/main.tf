@@ -1,9 +1,8 @@
 // TERRAMATE: GENERATED AUTOMATICALLY DO NOT EDIT
 
-resource "google_artifact_registry_repository_iam_binding" "binding" {
-  repository = var.repository
-  location   = var.location
-  count      = var.module_enabled && var.policy_bindings == null && var.authoritative ? 1 : 0
+resource "google_dns_managed_zone_iam_binding" "binding" {
+  managed_zone = var.managed_zone
+  count        = var.module_enabled && var.policy_bindings == null && var.authoritative ? 1 : 0
   depends_on = [
     var.module_depends_on,
   ]
@@ -12,9 +11,8 @@ resource "google_artifact_registry_repository_iam_binding" "binding" {
   provider = google
   role     = var.role
 }
-resource "google_artifact_registry_repository_iam_member" "member" {
-  repository = var.repository
-  location   = var.location
+resource "google_dns_managed_zone_iam_member" "member" {
+  managed_zone = var.managed_zone
   depends_on = [
     var.module_depends_on,
   ]
@@ -25,10 +23,9 @@ resource "google_artifact_registry_repository_iam_member" "member" {
   provider = google
   role     = var.role
 }
-resource "google_artifact_registry_repository_iam_policy" "policy" {
-  repository = var.repository
-  location   = var.location
-  count      = var.module_enabled && var.policy_bindings != null ? 1 : 0
+resource "google_dns_managed_zone_iam_policy" "policy" {
+  managed_zone = var.managed_zone
+  count        = var.module_enabled && var.policy_bindings != null ? 1 : 0
   depends_on = [
     var.module_depends_on,
   ]

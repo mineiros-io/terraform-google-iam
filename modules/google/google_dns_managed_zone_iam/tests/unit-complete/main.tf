@@ -15,8 +15,7 @@ module "test-sa" {
   source     = "github.com/mineiros-io/terraform-google-service-account?ref=v0.1.1"
 }
 module "test0" {
-  name     = "name-complete0"
-  location = "europe-west3"
+  managed_zone = "managed_zone-complete0"
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
   }
@@ -29,8 +28,7 @@ module "test0" {
   source  = "../.."
 }
 module "test1" {
-  name          = "name-complete1"
-  location      = "europe-west3"
+  managed_zone  = "managed_zone-complete1"
   authoritative = false
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
@@ -44,8 +42,7 @@ module "test1" {
   source  = "../.."
 }
 module "test2" {
-  name     = "name-complete2"
-  location = "europe-west3"
+  managed_zone = "managed_zone-complete2"
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
   }
@@ -68,8 +65,7 @@ module "test2" {
   source  = "../.."
 }
 module "test3" {
-  name     = "name-complete3"
-  location = "europe-west3"
+  managed_zone = "managed_zone-complete3"
   computed_members_map = {
     myserviceaccount = "serviceAccount:${module.test-sa.service_account.email}"
   }

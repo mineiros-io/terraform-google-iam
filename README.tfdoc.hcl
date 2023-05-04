@@ -43,6 +43,9 @@ section {
     content = <<-EOT
       - [google_cloud_run_v2_job_iam](modules/google/google_cloud_run_v2_job_iam)
       - [google_cloud_run_v2_service_iam](modules/google/google_cloud_run_v2_service_iam)
+      - [google_dns_managed_zone_iam](modules/google/google_dns_managed_zone_iam)
+      - [google_artifact_registry_repository_iam](modules/google/google_artifact_registry_repository_iam)
+      - [google_cloud_run_service_iam](modules/google/google_cloud_run_service_iam)
     EOT
   }
 
@@ -61,6 +64,8 @@ section {
       }
 
       globals {
+        is_regional = true
+        region_attribute = "location"
         resource_parent = {
           variable      = "bucket" # Refer to the terraform provider documentation to get this attribute
           resource_name = "google_storage_bucket"

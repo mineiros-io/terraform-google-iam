@@ -6,9 +6,9 @@
 [![Google Provider Version](https://img.shields.io/badge/google-4-1A73E8.svg?logo=terraform)](https://github.com/terraform-providers/terraform-provider-google/releases)
 [![Join Discord](https://img.shields.io/badge/Discord-Terramate-7289d9.svg?logo=discord)](https://terramate.io/discord)
 
-# Google Cloud Run V2 Job IAM Terraform Module
+# Google Cloud DNS Managed Zone IAM Terraform Module
 
-A [Terraform](https://www.terraform.io) module to create a [Google Cloud Run V2 Job IAM](https://cloud.google.com/run/docs/reference/iam/roles) on [Google Cloud Services (GCP)](https://cloud.google.com/).
+A [Terraform](https://www.terraform.io) module to create a [Google Cloud DNS Managed Zone IAM](https://cloud.google.com/dns/docs/access-control) on [Google Cloud Services (GCP)](https://cloud.google.com/).
 
 **_This module supports Terraform version 1
 and is compatible with the Terraform Google Provider version 4._**
@@ -40,21 +40,20 @@ secure, and production-grade cloud infrastructure.
 
 This module implements the following Terraform resources:
 
-- `google_cloud_run_v2_job_iam_binding`
-- `google_cloud_run_v2_job_iam_member`
-- `google_cloud_run_v2_job_iam_policy`
+- `google_dns_managed_zone_iam_binding`
+- `google_dns_managed_zone_iam_member`
+- `google_dns_managed_zone_iam_policy`
 
 ## Getting Started
 
 Most common usage of the module:
 
 ```hcl
-module "google_cloud_run_v2_job_iam" {
-  source = "github.com/mineiros-io/terraform-google-iam//modules/google/google_cloud_run_v2_job_iam?ref=v0.1.1"
+module "google_dns_managed_zone_iam" {
+  source = "github.com/mineiros-io/terraform-google-iam//modules/google/google_dns_managed_zone_iam?ref=v0.1.1"
 
-  name  = google_cloud_run_v2_job.default.name
-  location = google_cloud_run_v2_job.default.location
-  role     = "roles/run.admin"
+  managed_zone  = google_dns_managed_zone.default.name
+  role     = "roles/dns.admin"
   members  = ["user:admin@example.com"]
 }
 ```
@@ -67,13 +66,9 @@ See [variables.tf] for details.
 
 #### Main Resource Configuration
 
-- [**`name`**](#var-name): *(**Required** `string`)*<a name="var-name"></a>
+- [**`managed_zone`**](#var-managed_zone): *(**Required** `string`)*<a name="var-managed_zone"></a>
 
-  Name of Cloud Run V2 Job resource the IAM is applied to.
-
-- [**`location`**](#var-location): *(**Required** `string`)*<a name="var-location"></a>
-
-  The location used to find the parent resource to bind the IAM policy to
+  Name of Cloud DNS Managed Zone resource the IAM is applied to.
 
 - [**`members`**](#var-members): *(Optional `set(string)`)*<a name="var-members"></a>
 
@@ -110,7 +105,7 @@ See [variables.tf] for details.
 
   ```hcl
   policy_bindings = [{
-    role    = "roles/run.admin"
+    role    = "roles/dns.admin"
     members = ["user:admin@example.com"]
   }]
   ```
@@ -180,17 +175,17 @@ The following attributes are exported in the outputs of the module:
 
 - [**`iam`**](#output-iam): *(`object(iam)`)*<a name="output-iam"></a>
 
-  All attributes of the created `google_cloud_run_v2_job_iam_binding` or `google_cloud_run_v2_job_iam_member` or `google_cloud_run_v2_job_iam_policy` resource according to the mode.
+  All attributes of the created `google_dns_managed_zone_iam_binding` or `google_dns_managed_zone_iam_member` or `google_dns_managed_zone_iam_policy` resource according to the mode.
 
 ## External Documentation
 
 ### Google Documentation
 
-- https://cloud.google.com/run/docs/reference/iam/roles
+- https://cloud.google.com/dns/docs/access-control
 
 ### Terraform Google Provider Documentation:
 
-- https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_run_v2_job_iam
+- https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/dns_managed_zone_iam
 
 ## Module Versioning
 
@@ -263,7 +258,7 @@ Copyright &copy; 2020-2023 [Mineiros GmbH][homepage]
 [terraform]: https://www.terraform.io
 [gcp]: https://cloud.google.com/
 [semantic versioning (semver)]: https://semver.org/
-[variables.tf]: https://github.com/mineiros-io/terraform-google-iam/blob/main/modules/google/google_cloud_run_v2_job_iam/variables.tf
+[variables.tf]: https://github.com/mineiros-io/terraform-google-iam/blob/main/modules/google/google_dns_managed_zone_iam/variables.tf
 [issues]: https://github.com/mineiros-io/terraform-google-iam/issues
 [license]: https://github.com/mineiros-io/terraform-google-iam/blob/main/LICENSE
 [makefile]: https://github.com/mineiros-io/terraform-google-iam/blob/main/Makefile
