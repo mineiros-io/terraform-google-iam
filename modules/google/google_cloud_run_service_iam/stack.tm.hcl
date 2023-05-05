@@ -5,7 +5,8 @@ stack {
 }
 
 globals {
-  is_regional = true
+  minimum_provider_version = "4.1"
+  is_regional              = true
   resource_parent = {
     variable      = "service"
     resource_name = "google_cloud_run_service"

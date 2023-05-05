@@ -5,6 +5,7 @@ stack {
 }
 
 globals {
+  minimum_provider_version = "4.48"
   resource_parent = {
     variable      = "managed_zone"
     resource_name = "google_dns_managed_zone"
