@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3]
+
+### Changed
+
+- Upgraded tool versions
+
+### Added
+
+- Generated the google_cloud_tasks_queue_iam module
+
+### Fixed
+
+- Removed the Terraform plugin cache that caused concurrent `terraform init` to fail
+
 ## [0.1.2]
 
 ### Added
@@ -30,7 +44,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - google_cloud_run_v2_job_iam
   - google_cloud_run_v2_service_iam
 
-[unreleased]: https://github.com/mineiros-io/terraform-google-iam/compare/v0.1.2...HEAD
+[unreleased]: https://github.com/mineiros-io/terraform-google-iam/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/mineiros-io/terraform-google-iam/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/mineiros-io/terraform-google-iam/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/mineiros-io/terraform-google-iam/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/mineiros-io/terraform-google-iam/releases/tag/v0.1.0

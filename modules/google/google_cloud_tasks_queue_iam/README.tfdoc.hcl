@@ -60,7 +60,7 @@ Most common usage of the module:
 
 ```hcl
 module "google_cloud_tasks_queue_iam" {
-  source = "github.com/mineiros-io/terraform-google-iam//modules/google/google_cloud_tasks_queue_iam?ref=v0.1.2"
+  source = "github.com/mineiros-io/terraform-google-iam//modules/google/google_cloud_tasks_queue_iam?ref=v0.1.3"
 
   name  = google_cloud_tasks_queue.default.name
   location = google_cloud_tasks_queue.default.location
