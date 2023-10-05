@@ -1,13 +1,13 @@
 terramate {
-  required_version                   = "~> 0.2.16"
+  required_version                   = "~> 0.4.0"
   required_version_allow_prereleases = true
 
   config {
     run {
       env {
-        TF_PLUGIN_CACHE_DIR = "${terramate.root.path.fs.absolute}/.tf_plugin_cache_dir"
-        TM_STACK_PATH       = terramate.stack.path.relative
-        TM_STACK_TO_ROOT    = terramate.stack.path.to_root
+        # TF_PLUGIN_CACHE_DIR = "${terramate.root.path.fs.absolute}/.tf_plugin_cache_dir"
+        TM_STACK_PATH    = terramate.stack.path.relative
+        TM_STACK_TO_ROOT = terramate.stack.path.to_root
       }
     }
   }

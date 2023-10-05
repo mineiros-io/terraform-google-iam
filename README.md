@@ -21,6 +21,7 @@ secure, and production-grade cloud infrastructure.
 - [google_dns_managed_zone_iam](modules/google/google_dns_managed_zone_iam)
 - [google_artifact_registry_repository_iam](modules/google/google_artifact_registry_repository_iam)
 - [google_cloud_run_service_iam](modules/google/google_cloud_run_service_iam)
+- [google_cloud_tasks_queue_iam](modules/google/google_cloud_tasks_queue_iam)
 
 ## Usage - How to Generate New IAM Modules
 
