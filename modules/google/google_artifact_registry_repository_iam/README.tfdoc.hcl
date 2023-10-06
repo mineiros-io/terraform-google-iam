@@ -60,7 +60,7 @@ Most common usage of the module:
 
 ```hcl
 module "google_artifact_registry_repository_iam" {
-  source = "github.com/mineiros-io/terraform-google-iam//modules/google/google_artifact_registry_repository_iam?ref=v0.1.2"
+  source = "github.com/mineiros-io/terraform-google-iam//modules/google/google_artifact_registry_repository_iam?ref=v0.1.3"
 
   repository  = google_artifact_registry_repository.default.name
   location = google_artifact_registry_repository.default.location

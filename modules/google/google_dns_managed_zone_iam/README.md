@@ -50,7 +50,7 @@ Most common usage of the module:
 
 ```hcl
 module "google_dns_managed_zone_iam" {
-  source = "github.com/mineiros-io/terraform-google-iam//modules/google/google_dns_managed_zone_iam?ref=v0.1.2"
+  source = "github.com/mineiros-io/terraform-google-iam//modules/google/google_dns_managed_zone_iam?ref=v0.1.3"
 
   managed_zone  = google_dns_managed_zone.default.name
   role     = "roles/dns.admin"
